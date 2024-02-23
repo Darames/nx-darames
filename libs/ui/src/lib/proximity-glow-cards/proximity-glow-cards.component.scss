@@ -11,23 +11,16 @@
   }
   &__glow::after,
   &__glow::before {
-    --alpha: 0;
-    background: var(--gradient);
-    background-attachment: fixed;
-    border-radius: 12px;
+    opacity: var(--active);
     mask:
       linear-gradient(#0000, #0000),
       conic-gradient(from calc((var(--start) - (var(--spread) * 0.5)) * 1deg), #000 0deg, #fff, #0000 calc(var(--spread) * 1deg));
     mask-composite: intersect;
     mask-clip: padding-box, border-box;
-    opacity: var(--active);
-    transition: opacity 1s;
   }
 
   &::before {
-    background: var(--border);
-    background-attachment: fixed;
-    border-radius: 12px;
+    opacity: var(--active);
     mask:
       linear-gradient(#0000, #0000),
       conic-gradient(
@@ -37,15 +30,9 @@
         hsl(0 0% 100% / 0.15) calc(var(--spread) * 2.5deg));
     mask-clip: padding-box, border-box;
     mask-composite: intersect;
-    opacity: var(--active);
-    transition: opacity 1s;
   }
   &::after {
-    background: var(--gradient);
-    background-attachment: fixed;
-    border-radius: 12px;
     opacity: var(--active, 0);
-    transition: opacity 1s;
     mask:
     linear-gradient(#0000, #0000),
     conic-gradient(from calc(((var(--start) + (var(--spread) * 0.25)) - (var(--spread) * 0.5)) * 1deg), #0000 0deg, #fff, #0000 calc(var(--spread) * 0.5deg));
@@ -69,15 +56,15 @@
   initial-value: 0;
 }
 
-body {
-  background: hsl(246 44% 7%);
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
-  font-family:  "Geist Sans", "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif, system-ui;
-  font-weight: 70;
-  color: hsl(240 18% 80%);
-}
+// body {
+//   background: hsl(246 44% 7%);
+//   display: grid;
+//   place-items: center;
+//   min-height: 100vh;
+//   font-family:  "Geist Sans", "SF Pro Text", "SF Pro Icons", "AOS Icons", "Helvetica Neue", Helvetica, Arial, sans-serif, system-ui;
+//   font-weight: 70;
+//   color: hsl(240 18% 80%);
+// }
 
 
 
