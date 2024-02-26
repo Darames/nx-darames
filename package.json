@@ -8,7 +8,7 @@
     "update": "nx migrate latest",
     "migrate": "nx migrate --run-migrations",
     "lib": "nx g @nx/angular:library ui",
-    "comp": "nx g @nx/angular:component product-list --directory=libs/ui/src/lib/product-list --standalone --export"
+    "comp": "nx generate @nx/angular:component --name=weather-component --directory=libs/ui/src/lib/components/weather-component --changeDetection=OnPush --nameAndDirectoryFormat=as-provided --style=scss --viewEncapsulation=None --standalone --export"
   },
   "private": true,
   "dependencies": {
