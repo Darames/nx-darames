@@ -1,7 +1,0 @@
-<p (click)="getData()">weather-component works!</p>
-
-<!-- {{weatherData$ |json}} -->
-@if ((weatherData$ | async) ) {
-
-  <img [src]="weatherData$.value.current.condition.icon" alt="">
-}

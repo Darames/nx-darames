@@ -1,3 +1,2 @@
-export * from './lib/ui/ui.component';
-
-export * from './lib/components/weather-component/weather-component.component';
+export * from './lib/components/weather/weather.component';
+export * from './lib/migratet-to-angular/proximity-glow-cards/proximity-glow-cards.component';

@@ -12,6 +12,7 @@ module.exports = {
       transparent: 'transparent',
       red: 'red',
       black: 'black',
+      white: 'white',
       proxcard: {
         border:'hsl(280 10% 50% / 1)',
         card: 'hsl(237 36% 10%)',
