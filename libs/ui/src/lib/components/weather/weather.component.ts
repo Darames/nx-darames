@@ -23,7 +23,7 @@ export class WeatherComponent {
 
   getData(): void {
     this.httpClient
-    .get('https://api.weatherapi.com/v1/current.json?key=4b9c79a9f1004a00af794544242602 &q=Wiesbaden&aqi=no')
+    .get('https://api.weatherapi.com/v1/current.json?key=4b9c79a9f1004a00af794544242602&q=Wiesbaden&aqi=no')
     .pipe(take(1)).subscribe((val) => {
       console.log(val);
       this.weatherData$.next(val as WeatherapiResponse);
