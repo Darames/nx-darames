@@ -1,10 +1,12 @@
-<p (click)="getData()">weather.component works!</p>
-
-<!-- {{weatherData$ |json}} -->
-@if ((weatherData$ | async) ) {
-
-  <div class="flex h-[64px]">
-    <img [src]="weatherData$.value?.current?.condition?.icon" alt="">
-    <p class="text-white text-[40px] leading-[64px]">{{weatherData$.value?.current?.temp_c}}°</p>
-  </div>
-}
+<div class="h-[64px] w-[135px]">
+  @if ((weatherData$ | async) ) {
+    <div class="flex h-full w-full justify-center">
+      <img [src]="weatherData$.value?.current?.condition?.icon" [alt]="weatherData$.value?.current?.condition?.text">
+      <p class="text-white text-[40px] leading-[64px]">{{weatherData$.value?.current?.temp_c}}°</p>
+    </div>
+  } @else {
+    <button class="flex h-full w-full justify-center items-center cursor-pointer" (click)="getData()">
+      <fa-icon [classes]="['w-[40px] h-[40px]']" [icon]="faCloudSun"></fa-icon>
+    </button>
+  }
+</div>

@@ -1,22 +1,24 @@
-import { Component, ViewEncapsulation, inject} from '@angular/core';
+import { ChangeDetectionStrategy, Component, ViewEncapsulation, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { BehaviorSubject, take } from 'rxjs';
 import { WeatherapiResponse } from './weather.interfaces';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faCloudSun } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'ui-weather',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],
+  imports: [CommonModule, HttpClientModule, FontAwesomeModule],
   templateUrl: './weather.component.html',
   styleUrl: './weather.component.scss',
   encapsulation: ViewEncapsulation.None,
-  // changeDetection: ChangeDetectionStrategy.OnPush,
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class WeatherComponent {
-
-
   protected readonly httpClient = inject(HttpClient)
+
+  faCloudSun = faCloudSun;
   weatherData$ = new BehaviorSubject<WeatherapiResponse|null>(null);
 
   getData(): void {

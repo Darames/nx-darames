@@ -1,0 +1,31 @@
+<div class="relative mx-auto max-w-[1440px] w-full font-redHat">
+  <img class="hidden md:block w-full h-auto absolute top-0 left-0" src="assets/frontend-mentor/launch-countdown-timer/design/desktop-design.jpg" alt="">
+  <img class="block md:hidden w-full h-auto absolute top-0 left-0" src="assets/frontend-mentor/launch-countdown-timer/design/mobile-design.jpg" alt="">
+
+  <div class="relative">
+    <h1 class="pt-[141px] md:pt-[133px] px-[16px] text-center uppercase text-[17px] md:text-[22px] leading-[24px] md:leading-normal font-bold text-white tracking-[6.8px] md:tracking-[7.5px]" >We're launching soon</h1>
+    <div class="grid grid-cols-4 gap-[17px] md:gap-[30px] mt-[56px] md:mt-[105px] mx-auto max-w-[327px] md:max-w-[690px]">
+      @for (item of time; track item) {
+        <div class="h-[63px] md:h-[135px] relative rounded-[4px] md:rounded-[6px] overflow-hidden">
+          <div class="h-full relative bg-fm-lct-darkDesaturatedBlue">
+            <p class="text-fm-lct-softRed text-center font-bold text-[34px] md:text-[78px] leading-[63px] md:leading-[135px]">
+              @if (item.value > 9) {
+                {{item.value}}
+              } @else {
+                0{{item.value}}
+              }
+            </p>
+            <div class="h-1/2 absolute top-0 left-0 w-full bg-fm-lct-veryDarkBlue opacity-40"></div>
+            <div class="absolute -left-[4px] md:-left-[8px] -right-[4px] md:-right-[8px] top-1/2 -translate-y-1/2 flex justify-between">
+              <div class="h-[8px] md:h-[16px] w-[8px] md:w-[16px] rounded-full bg-fm-lct-veryVeryDarkBlue"></div>
+              <div class="h-[8px] md:h-[16px] w-[8px] md:w-[16px] rounded-full bg-fm-lct-veryVeryDarkBlue"></div>
+            </div>
+          </div>
+          <p class="absolute -bottom-[26px] md:-bottom-[47px] w-full text-center text-fm-lct-grayishBlue uppercase text-[7px] md:text-[13px] font-bold tracking-[3px] md:tracking-[7px]">
+            {{item.label}}
+          </p>
+        </div>
+      }
+    </div>
+  </div>
+</div>

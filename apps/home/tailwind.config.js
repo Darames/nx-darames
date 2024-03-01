@@ -8,6 +8,10 @@ module.exports = {
     ...createGlobPatternsForDependencies(__dirname),
   ],
   theme: {
+    screens: {
+      'md': '768px',
+      'lg': '1024px',
+    },
     colors: {
       transparent: 'transparent',
       red: 'red',
@@ -19,6 +23,18 @@ module.exports = {
         text: 'hsl(240 18% 80%)',
         container: 'hsl(246 44% 7%)'
       },
+      fm: {
+        lct: {
+          grayishBlue: 'hsl(237, 18%, 59%)',
+          softRed: 'hsl(345, 95%, 68%)',
+          darkDesaturatedBlue: 'hsl(236, 21%, 26%)',
+          veryDarkBlue: 'hsl(235, 16%, 14%)',
+          veryVeryDarkBlue: 'hsl(234, 17%, 12%)'
+        }
+      }
+    },
+    fontFamily: {
+      redHat: 'Red Hat Text'
     },
     extend: {
       backgroundImage: {
