@@ -1,5 +1,6 @@
 const { createGlobPatternsForDependencies } = require('@nx/angular/tailwind');
 const { join } = require('path');
+import plugin from 'tailwindcss/plugin';
 
 /** @type {import('tailwindcss').Config} */
 module.exports = {
@@ -43,5 +44,20 @@ module.exports = {
       },
     },
   },
-  plugins: [],
+  plugins: [
+    plugin(({ addUtilities }) => {
+      const utility = {
+        '.preserve-3d': {
+          transformStyle: 'preserve-3d'
+        },
+        '.flip-x': {
+          transform: 'rotateX(-180deg)'
+        },
+        '.flip-y': {
+          transform: 'rotateY(-180deg)'
+        },
+      };
+      addUtilities(utility);
+    }),
+  ],
 };
