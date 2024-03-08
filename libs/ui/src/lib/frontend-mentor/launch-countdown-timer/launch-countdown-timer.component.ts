@@ -11,6 +11,19 @@ import { CommonModule, isPlatformServer } from '@angular/common';
 import { BehaviorSubject } from 'rxjs';
 import { PushPipe } from '@ngrx/component';
 
+interface TimeArrayItem {
+  id: string;
+  label: string;
+  value: number;
+  change: boolean;
+}
+
+interface PrevTime {
+  days: number,
+  hours: number,
+  minutes: number,
+  seconds: number,
+}
 @Component({
   selector: 'ui-launch-countdown-timer',
   standalone: true,
@@ -21,40 +34,34 @@ import { PushPipe } from '@ngrx/component';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LaunchCountdownTimerComponent implements OnInit, OnDestroy {
-  time = new BehaviorSubject([
+  time = new BehaviorSubject<TimeArrayItem[]>([
     {
       id: 'days',
       label: 'Days',
       value: 8,
-      change: true,
+      change: false,
     },
     {
       id: 'hours',
       label: 'Hours',
       value: 23,
-      change: true,
+      change: false,
     },
     {
       id: 'minutes',
       label: 'Minutes',
       value: 55,
-      change: true,
+      change: false,
     },
     {
       id: 'seconds',
       label: 'Seconds',
       value: 41,
-      change: true,
+      change: false,
     },
   ]);
 
-  prevTime = {
-    days: 8,
-    hours: 23,
-    minutes: 55,
-    seconds: 41,
-  }
-
+  prevSeconds = 41;
   targetDate = new Date('2024-11-01');
   interval?: any ;
   animate = new BehaviorSubject(false);
@@ -70,61 +77,62 @@ export class LaunchCountdownTimerComponent implements OnInit, OnDestroy {
 
   counter():void {
     this.interval = setInterval(() => {
-      const timeArray:any = [];
-      const newTime = new Date();
-      const diffMs = this.targetDate.getTime() - newTime.getTime();
-
-      const tmpDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
-      const tmpHours = Math.floor(diffMs / (1000 * 60 * 60));
-      const tmpMin = Math.floor(diffMs / (1000 * 60));
-      const tmpSec = Math.floor(diffMs / (1000));
-
-      const diffDays = tmpDays;
-      const diffHours = Math.ceil(tmpHours - (tmpDays * 24));
-      const diffMin = Math.ceil(tmpMin - (tmpHours * 60));
-      const diffSec = Math.ceil(tmpSec - (tmpMin * 60));
-
-      if (diffDays > 0) {
-        timeArray.push({
-          id: 'days',
-          label: 'Days',
-          value: diffDays,
-          change: this.prevTime.days !== diffDays,
-        });
-        this.prevTime.days = diffDays;
-      }
-      if (diffHours > 0) {
-        timeArray.push({
-          id: 'hours',
-          label: 'Hours',
-          value: diffHours,
-          change: this.prevTime.hours !== diffHours,
-        });
-        this.prevTime.hours = diffHours;
-      }
-      if (diffMin > 0) {
-        timeArray.push({
-          id: 'minutes',
-          label: 'Minutes',
-          value: diffMin,
-          change: this.prevTime.minutes !== diffMin,
-        });
-        this.prevTime.minutes = diffMin;
-      }
-      timeArray.push({
-        id: 'seconds',
-        label: 'Seconds',
-        value: diffSec,
-        change: this.prevTime.seconds !== diffSec,
-      });
-      this.prevTime.seconds = diffSec;
 
       this.animate.next(false);
-      this.time.next(timeArray)
+      this.time.next(this.getTime())
       setTimeout(() => {
         this.animate.next(true);
       }, 100);
     }, 1000);
+  }
+
+  getTime():TimeArrayItem[] {
+    const timeArray:TimeArrayItem[] = [];
+    const newTime = new Date();
+    const diffMs = this.targetDate.getTime() - newTime.getTime();
+
+    const tmpDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    const tmpHours = Math.floor(diffMs / (1000 * 60 * 60));
+    const tmpMin = Math.floor(diffMs / (1000 * 60));
+    const tmpSec = Math.floor(diffMs / (1000));
+
+    const diffDays = tmpDays;
+    const diffHours = tmpHours - (tmpDays * 24);
+    const diffMin = tmpMin - (tmpHours * 60);
+    const diffSec = tmpSec - (tmpMin * 60);
+
+    if (diffDays > 0) {
+      timeArray.push({
+        id: 'days',
+        label: 'Days',
+        value: diffDays,
+        change: diffHours === 0 && diffMin === 0 && diffSec === 0,
+      });
+    }
+    if (diffHours > 0) {
+      timeArray.push({
+        id: 'hours',
+        label: 'Hours',
+        value: diffHours,
+        change: diffMin === 0 && diffSec === 0,
+      });
+    }
+    if (diffMin > 0) {
+      timeArray.push({
+        id: 'minutes',
+        label: 'Minutes',
+        value: diffMin,
+        change: diffSec === 0,
+      });
+    }
+    timeArray.push({
+      id: 'seconds',
+      label: 'Seconds',
+      value: diffSec,
+      change: this.prevSeconds !== diffSec,
+    });
+    this.prevSeconds = diffSec;
+    return timeArray;
   }
 
   ngOnDestroy(): void {

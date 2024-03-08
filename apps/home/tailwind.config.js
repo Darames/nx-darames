@@ -51,10 +51,13 @@ module.exports = {
           transformStyle: 'preserve-3d'
         },
         '.flip-x': {
+          transform: 'rotateX(180deg)'
+        },
+        '.-flip-x': {
           transform: 'rotateX(-180deg)'
         },
         '.flip-y': {
-          transform: 'rotateY(-180deg)'
+          transform: 'rotateY(180deg)'
         },
       };
       addUtilities(utility);

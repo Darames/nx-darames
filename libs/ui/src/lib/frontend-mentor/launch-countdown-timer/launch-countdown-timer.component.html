@@ -8,15 +8,28 @@
       @for (item of time | ngrxPush; track item) {
         <div class="h-[63px] md:h-[135px] relative rounded-[4px] md:rounded-[6px]">
           <div class="absolute top-0 left-0 h-full w-full">
-            <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value}"></ng-container>
+              @if (item.change) {
+                <div class="h-1/2 overflow-hidden w-full">
+                  <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value - 1}"></ng-container>
+                </div>
+              }
+              <div class="absolute top-1/2 h-1/2 overflow-hidden w-full flex flex-col justify-end">
+                <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value}"></ng-container>
+              </div>
           </div>
-          <div class="relative h-full w-full overflow-hidden ">
-            <div class="absolute top-0 left-0 h-full w-full duration-700 preserve-3d backface-hidden" [ngClass]="{'transition-transform flip-x': (animate | ngrxPush) === false && item.change}">
-              <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value}"></ng-container>
+          <div class="relative h-full w-full ">
+            <div class="absolute top-0 left-0 h-full w-full duration-500 preserve-3d backface-hidden" [ngClass]="{'transition-transform flip-x': (animate | ngrxPush) && item.change}">
+              <div class="h-1/2 overflow-hidden w-full">
+                <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value}"></ng-container>
+              </div>
             </div>
-            <div class="absolute top-0 left-0 h-full w-full duration-700 preserve-3d backface-hidden" [ngClass]="{'transition-transform flip-x': (animate | ngrxPush) && item.change}">
-                <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value + 1}"></ng-container>
-            </div>
+            @if (item.change) {
+              <div class="absolute top-0 left-0 h-full w-full duration-500 preserve-3d backface-hidden shadow-lg" [ngClass]="{'transition-transform flip-x': (animate | ngrxPush) === false && item.change}">
+                <div class="relative top-1/2 h-1/2 overflow-hidden w-full flex flex-col justify-end">
+                  <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value - 1}"></ng-container>
+                </div>
+              </div>
+            }
           </div>
           <p class="absolute -bottom-[26px] md:-bottom-[47px] w-full text-center text-fm-lct-grayishBlue uppercase text-[7px] md:text-[13px] font-bold tracking-[3px] md:tracking-[7px]">
             {{item.label}}
@@ -32,6 +45,8 @@
     <p class="text-fm-lct-softRed text-center font-bold text-[34px] md:text-[78px] leading-[63px] md:leading-[135px]">
       @if (value > 9) {
         {{value}}
+      } @else if (value < 0) {
+        59
       } @else {
         0{{value}}
       }
