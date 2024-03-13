@@ -18,12 +18,6 @@ interface TimeArrayItem {
   change: boolean;
 }
 
-interface PrevTime {
-  days: number,
-  hours: number,
-  minutes: number,
-  seconds: number,
-}
 @Component({
   selector: 'ui-launch-countdown-timer',
   standalone: true,
@@ -62,8 +56,8 @@ export class LaunchCountdownTimerComponent implements OnInit, OnDestroy {
   ]);
 
   prevSeconds = 41;
-  targetDate = new Date('2024-11-01');
-  interval?: any ;
+  targetDate = new Date('2024-10-31');
+  interval?: NodeJS.Timer ;
   animate = new BehaviorSubject(false);
 
   constructor(@Inject(PLATFORM_ID) protected readonly platformId: string,) {}
@@ -75,9 +69,8 @@ export class LaunchCountdownTimerComponent implements OnInit, OnDestroy {
       this.counter();
   }
 
-  counter():void {
+  counter(): void {
     this.interval = setInterval(() => {
-
       this.animate.next(false);
       this.time.next(this.getTime())
       setTimeout(() => {
@@ -86,7 +79,7 @@ export class LaunchCountdownTimerComponent implements OnInit, OnDestroy {
     }, 1000);
   }
 
-  getTime():TimeArrayItem[] {
+  getTime(): TimeArrayItem[] {
     const timeArray:TimeArrayItem[] = [];
     const newTime = new Date();
     const diffMs = this.targetDate.getTime() - newTime.getTime();
@@ -138,5 +131,4 @@ export class LaunchCountdownTimerComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     clearInterval(this.interval);
   }
-  // https://www.joshwcomeau.com/react/folding-the-dom/
 }

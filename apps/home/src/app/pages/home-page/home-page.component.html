@@ -4,10 +4,15 @@
   </ui-proximity-glow-cards>
 </div>
 
-<!-- <div class="min-h-[300px] grid place-items-center bg-proxcard-container text-white">
+<div class="min-h-[300px] grid place-items-center bg-proxcard-container text-white">
   <div class="flex flex-wrap flex-row gap-[10px] mx-auto justify-center place-items-center relative p-[32px] touch-none">
-    <ui-proximity-glow-cards></ui-proximity-glow-cards>
+    @for (page of pages; track page) {
+      <a class="cursor-pointer"
+      [routerLink]="[page.link]" routerLinkActive="active">
+        <ui-proximity-glow-cards class="min-h-full min-w-[50px] block">
+          {{page.label}}
+        </ui-proximity-glow-cards>
+      </a>
+    }
   </div>
-</div> -->
-
-<ui-launch-countdown-timer></ui-launch-countdown-timer>
+</div>
