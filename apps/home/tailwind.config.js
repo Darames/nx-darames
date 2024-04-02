@@ -18,11 +18,14 @@ module.exports = {
       red: 'red',
       black: 'black',
       white: 'white',
+      bg: '#141414',
       proxcard: {
         border:'hsl(280 10% 50% / 1)',
-        card: 'hsl(237 36% 10%)',
+        card: 'rgb(30, 30, 35)',
         text: 'hsl(240 18% 80%)',
-        container: 'hsl(246 44% 7%)'
+        container: ''
+        // card: 'hsl(237 36% 10%)', // original
+        // container: 'hsl(246 44% 7%)' // original
       },
       fm: {
         lct: {

@@ -102,7 +102,7 @@ export class LaunchCountdownTimerComponent implements OnInit, OnDestroy {
         change: diffHours === 0 && diffMin === 0 && diffSec === 0,
       });
     }
-    if (diffHours > 0) {
+    if (diffHours > 0 && diffDays > 0) {
       timeArray.push({
         id: 'hours',
         label: 'Hours',
@@ -110,7 +110,7 @@ export class LaunchCountdownTimerComponent implements OnInit, OnDestroy {
         change: diffMin === 0 && diffSec === 0,
       });
     }
-    if (diffMin > 0) {
+    if (diffMin > 0 && diffHours > 0) {
       timeArray.push({
         id: 'minutes',
         label: 'Minutes',

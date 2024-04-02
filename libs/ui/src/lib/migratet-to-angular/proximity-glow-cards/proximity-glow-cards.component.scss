@@ -5,7 +5,7 @@
 }
 
 .proximity-glow-card {
-	background: var(--card);
+	// background: var(--card);
   &:is(:hover, :focus-visible) {
     z-index: 2;
   }

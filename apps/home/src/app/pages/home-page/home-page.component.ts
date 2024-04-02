@@ -18,7 +18,8 @@ export class HomePageComponent {
   pages = [
     {
       label: 'Countdown',
-      link: '/countdown'
+      link: '/countdown',
+      img: 'assets/frontend-mentor/launch-countdown-timer/design/desktop-preview.jpg'
     }
   ]
 }
