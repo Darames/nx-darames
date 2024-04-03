@@ -1,6 +1,13 @@
-# nx-darames
+# nx-darames README
 
-# AngularMonorepo
+## Dev Start home app
+
+To start the development server run `npm run dev`. 
+Open your browser and navigate to http://localhost:4200/.
+
+
+
+# AngularMonorepo Default README
 
 <a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
 
