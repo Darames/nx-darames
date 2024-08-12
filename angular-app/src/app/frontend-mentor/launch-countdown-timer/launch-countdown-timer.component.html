@@ -1,63 +1,123 @@
-<div class="relative bg-fm-lct-veryDarkBlue mx-auto w-full font-redHat min-h-[100vh] overflow-hidden">
-  <!-- <img class="hidden md:block w-full absolute top-0 left-0" src="assets/frontend-mentor/launch-countdown-timer/design/desktop-design.jpg" alt=""> -->
-  <!-- <img class="block md:hidden w-full absolute top-0 left-0" src="assets/frontend-mentor/launch-countdown-timer/design/mobile-design.jpg" alt=""> -->
+<div
+    class="relative bg-fm-lct-veryDarkBlue mx-auto w-full font-redHat min-h-[100vh] overflow-hidden"
+>
+    <img
+        class="block w-[383%] md:w-full max-w-[383%] md:max-w-full absolute top-0 md:top-[3px] -left-[141%] md:left-0"
+        src="assets/frontend-mentor/launch-countdown-timer/images/bg-stars.svg"
+        alt=""
+    />
+    <img
+        class="block w-[323%] md:w-full max-w-[323%] md:max-w-full absolute bottom-0 -left-[54%] md:left-0"
+        src="assets/frontend-mentor/launch-countdown-timer/images/pattern-hills.svg"
+        alt=""
+    />
 
-  <img class="block w-[383%] md:w-full max-w-[383%] md:max-w-full absolute top-0 md:top-[3px] -left-[141%] md:left-0" src="assets/frontend-mentor/launch-countdown-timer/images/bg-stars.svg" alt="">
-  <img class="block w-[323%] md:w-full max-w-[323%] md:max-w-full absolute bottom-0 -left-[54%] md:left-0" src="assets/frontend-mentor/launch-countdown-timer/images/pattern-hills.svg" alt="">
-
-  <div class="relative">
-    <h1 class="pt-[141px] md:pt-[133px] px-[16px] text-center uppercase text-[17px] md:text-[22px] leading-[24px] md:leading-normal font-bold text-white tracking-[6.8px] md:tracking-[7.5px]" >We're launching soon</h1>
-    <div class="grid grid-cols-4 gap-[17px] md:gap-[30px] mt-[56px] md:mt-[105px] mx-auto max-w-[327px] md:max-w-[690px]">
-      @for (item of time | async; track item) {
-        <div class="h-[63px] md:h-[135px] relative rounded-[4px] md:rounded-[6px]">
-          <div class="absolute top-0 left-0 h-full w-full">
-              @if (item.change) {
-                <div class="h-1/2 overflow-hidden w-full">
-                  <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value - 1}"></ng-container>
+    <div class="relative">
+        <h1
+            class="pt-[141px] md:pt-[133px] px-[16px] text-center uppercase text-[17px] md:text-[22px] leading-[24px] md:leading-normal font-bold text-white tracking-[6.8px] md:tracking-[7.5px]"
+        >
+            We're launching soon
+        </h1>
+        <div
+            class="grid grid-cols-4 gap-[17px] md:gap-[30px] mt-[56px] md:mt-[105px] mx-auto max-w-[327px] md:max-w-[690px]"
+        >
+            @for (item of time | async; track item) {
+            <div
+                class="h-[63px] md:h-[135px] relative rounded-[4px] md:rounded-[6px]"
+            >
+                <div class="absolute top-0 left-0 h-full w-full">
+                    @if (item.change) {
+                    <div class="h-1/2 overflow-hidden w-full">
+                        <ng-container
+                            *ngTemplateOutlet="
+                                cardInner;
+                                context: { value: item.value - 1 }
+                            "
+                        ></ng-container>
+                    </div>
+                    }
+                    <div
+                        class="absolute top-1/2 h-1/2 overflow-hidden w-full flex flex-col justify-end"
+                    >
+                        <ng-container
+                            *ngTemplateOutlet="
+                                cardInner;
+                                context: { value: item.value }
+                            "
+                        ></ng-container>
+                    </div>
                 </div>
-              }
-              <div class="absolute top-1/2 h-1/2 overflow-hidden w-full flex flex-col justify-end">
-                <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value}"></ng-container>
-              </div>
-          </div>
-          <div class="relative h-full w-full ">
-            <div class="absolute top-0 left-0 h-full w-full duration-500 preserve-3d backface-hidden" [ngClass]="{'transition-transform flip-x': (animate | async) && item.change}">
-              <div class="h-1/2 overflow-hidden w-full">
-                <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value}"></ng-container>
-              </div>
+                <div class="relative h-full w-full">
+                    <div
+                        class="absolute top-0 left-0 h-full w-full duration-500 preserve-3d backface-hidden"
+                        [ngClass]="{
+                            'transition-transform flip-x':
+                                (animate | async) && item.change
+                        }"
+                    >
+                        <div class="h-1/2 overflow-hidden w-full">
+                            <ng-container
+                                *ngTemplateOutlet="
+                                    cardInner;
+                                    context: { value: item.value }
+                                "
+                            ></ng-container>
+                        </div>
+                    </div>
+                    @if (item.change) {
+                    <div
+                        class="absolute top-0 left-0 h-full w-full duration-500 preserve-3d backface-hidden shadow-lg"
+                        [ngClass]="{
+                            'transition-transform flip-x':
+                                (animate | async) === false && item.change
+                        }"
+                    >
+                        <div
+                            class="relative top-1/2 h-1/2 overflow-hidden w-full flex flex-col justify-end"
+                        >
+                            <ng-container
+                                *ngTemplateOutlet="
+                                    cardInner;
+                                    context: { value: item.value - 1 }
+                                "
+                            ></ng-container>
+                        </div>
+                    </div>
+                    }
+                </div>
+                <p
+                    class="absolute -bottom-[26px] md:-bottom-[47px] w-full text-center text-fm-lct-grayishBlue uppercase text-[7px] md:text-[13px] font-bold tracking-[3px] md:tracking-[7px]"
+                >
+                    {{ item.label }}
+                </p>
             </div>
-            @if (item.change) {
-              <div class="absolute top-0 left-0 h-full w-full duration-500 preserve-3d backface-hidden shadow-lg" [ngClass]="{'transition-transform flip-x': (animate | async) === false && item.change}">
-                <div class="relative top-1/2 h-1/2 overflow-hidden w-full flex flex-col justify-end">
-                  <ng-container *ngTemplateOutlet="cardInner; context: {value: item.value - 1}"></ng-container>
-                </div>
-              </div>
             }
-          </div>
-          <p class="absolute -bottom-[26px] md:-bottom-[47px] w-full text-center text-fm-lct-grayishBlue uppercase text-[7px] md:text-[13px] font-bold tracking-[3px] md:tracking-[7px]">
-            {{item.label}}
-          </p>
         </div>
-      }
     </div>
-  </div>
 </div>
 
 <ng-template #cardInner let-value="value">
-  <div class="h-[63px] md:h-[135px] relative bg-fm-lct-darkDesaturatedBlue">
-    <p class="text-fm-lct-softRed text-center font-bold text-[34px] md:text-[78px] leading-[63px] md:leading-[135px]">
-      @if (value > 9) {
-        {{value}}
-      } @else if (value < 0) {
-        59
-      } @else {
-        0{{value}}
-      }
-    </p>
-    <div class="h-1/2 absolute top-0 left-0 w-full bg-fm-lct-veryDarkBlue opacity-40"></div>
-    <div class="absolute -left-[4px] md:-left-[8px] -right-[4px] md:-right-[8px] top-1/2 -translate-y-1/2 flex justify-between">
-      <div class="h-[8px] md:h-[16px] w-[8px] md:w-[16px] rounded-full bg-fm-lct-veryVeryDarkBlue"></div>
-      <div class="h-[8px] md:h-[16px] w-[8px] md:w-[16px] rounded-full bg-fm-lct-veryVeryDarkBlue"></div>
+    <div class="h-[63px] md:h-[135px] relative bg-fm-lct-darkDesaturatedBlue">
+        <p
+            class="text-fm-lct-softRed text-center font-bold text-[34px] md:text-[78px] leading-[63px] md:leading-[135px]"
+        >
+            @if (value > 9) {
+            {{ value }}
+            } @else if (value < 0) { 59 } @else { 0{{ value }}
+            }
+        </p>
+        <div
+            class="h-1/2 absolute top-0 left-0 w-full bg-fm-lct-veryDarkBlue opacity-40"
+        ></div>
+        <div
+            class="absolute -left-[4px] md:-left-[8px] -right-[4px] md:-right-[8px] top-1/2 -translate-y-1/2 flex justify-between"
+        >
+            <div
+                class="h-[8px] md:h-[16px] w-[8px] md:w-[16px] rounded-full bg-fm-lct-veryVeryDarkBlue"
+            ></div>
+            <div
+                class="h-[8px] md:h-[16px] w-[8px] md:w-[16px] rounded-full bg-fm-lct-veryVeryDarkBlue"
+            ></div>
+        </div>
     </div>
-  </div>
 </ng-template>
