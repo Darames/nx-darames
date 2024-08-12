@@ -1,0 +1,42 @@
+<div class="bg-proxcard-container text-white">
+    <router-outlet></router-outlet>
+</div>
+
+<div class="min-h-[100vh] bg-bg flex flex-col px-[15px] lg:px-[30px]">
+    <div class="max-w-[1440px] w-full mx-auto">
+        <div class="w-full min-h-[88px] pt-[10px]">
+            <app-proximity-glow-cards>
+                <app-weather></app-weather>
+            </app-proximity-glow-cards>
+        </div>
+        <div class="mt-[140px] bg-white rounded-[12px] p-[15px] w-[200px]">
+            <img
+                src="assets/frontend-mentor/logo-desktop.svg"
+                alt="Frontend Mentor Logo"
+                title="Frontend Mentor Logo"
+            />
+        </div>
+        <div class="grid bg-proxcard-container text-white flex-grow py-[30px]">
+            <div
+                class="flex flex-wrap flex-row gap-[10px] w-full relative touch-none"
+            >
+                @for (page of pages; track page) {
+                <a
+                    class="block w-[200px] max-w-full cursor-pointer"
+                    [routerLink]="[page.link]"
+                    routerLinkActive="active"
+                >
+                    <app-proximity-glow-cards class="block w-full">
+                        <div
+                            class="-mx-[30px] -mt-[30px] mb-[30px] rounded-t-[12px] overflow-hidden"
+                        >
+                            <img [src]="page.img" class="w-full h-auto" />
+                        </div>
+                        {{ page.label }}
+                    </app-proximity-glow-cards>
+                </a>
+                }
+            </div>
+        </div>
+    </div>
+</div>
