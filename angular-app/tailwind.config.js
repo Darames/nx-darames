@@ -10,14 +10,24 @@ module.exports = {
         },
         colors: {
             transparent: 'transparent',
-            red: 'red',
-            black: 'black',
+            black: '#030303', // background https://colorpalettes.net/color-palette-1849/
+            red: {
+                DEFAULT: '#cc2c11', // Primary https://colorpalettes.net/color-palette-1849/
+                dark: '#941305' // background second https://colorpalettes.net/color-palette-1849/
+            },
+            grey: '#747d90', // Secondary https://colorpalettes.net/color-palette-1849/
+            blue: '#145b9c', // Accent https://colorpalettes.net/color-palette-1849/
             white: 'white',
+
             bg: '#141414',
             proxcard: {
-                border: 'hsl(280 10% 50% / 1)',
+                // border: 'hsl(280 10% 50% / 1)',
+                // border: ({ theme }) => (theme('colors.red.DEFAULT')),
+                // border: ({ theme }) => (theme.colors.red.DEFAULT),
                 card: 'rgb(30, 30, 35)',
+                // card: ({ theme }) => (theme('colors.red.dark')),
                 text: 'hsl(240 18% 80%)',
+                // text: ({ theme }) => (theme('colors.black')),
                 container: ''
                 // card: 'hsl(237 36% 10%)', // original
                 // container: 'hsl(246 44% 7%)' // original
